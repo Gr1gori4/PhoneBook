@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/style">
+        <file>style.css</file>
+    </qresource>
+    <qresource prefix="/ыенду"/>
+    <qresource prefix="/file"/>
+</RCC>
