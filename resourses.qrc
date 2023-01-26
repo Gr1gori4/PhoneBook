@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/file">
+        <file>file.txt</file>
+        <file>fileout.txt</file>
+    </qresource>
+</RCC>
