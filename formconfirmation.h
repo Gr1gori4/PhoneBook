@@ -28,7 +28,6 @@ private:
     QPushButton *ppbconfirmation;
 
 public slots:
-    void slot();
     void close();
 };
 

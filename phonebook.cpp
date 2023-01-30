@@ -133,11 +133,16 @@ PhoneBook::PhoneBook(QWidget *parent)
 
     pvphonebook = new QVector<PhoneRecord>;
 
-    connect(ppbinput,SIGNAL(clicked()), this,SLOT(add_number()));
-    connect(ppbinputSearch,SIGNAL(clicked()), this,SLOT(search()));
-    connect(ppbdelete,SIGNAL(clicked()), this,SLOT(deletephonerecord()));
-    connect(prbname,SIGNAL(clicked()), this,SLOT(sortname()));
-    connect(prbsurname,SIGNAL(clicked()), this,SLOT(sortsurname()));
+    connect(ppbinput,SIGNAL(clicked()), SLOT(add_number()));
+    connect(ppbinputSearch,SIGNAL(clicked()),SLOT(search()));
+    connect(ppbdelete,SIGNAL(clicked()),SLOT(deletephonerecord()));
+    connect(prbname,SIGNAL(clicked()),SLOT(sortname()));
+    connect(prbsurname,SIGNAL(clicked()),SLOT(sortsurname()));
+
+    QFile styleF;
+    styleF.setFileName(":/style/style.css");
+    if (!styleF.open(QFile::ReadOnly)) qDebug() << "Ошибка при открытии файла чтения CSS";
+    setStyleSheet(styleF.readAll());
 
     readFile();
 }
@@ -156,9 +161,6 @@ void PhoneBook :: add_number()
 
     form = new Formconfirmation;
     form->show();
-
-    connect(this,&PhoneBook::signal, form, &Formconfirmation::slot);
-    emit signal();
 
     plename->clear();
     plesurname->clear();
@@ -215,7 +217,10 @@ void PhoneBook::deletephonerecord()
     if(size==pvphonebook->size())
         plinfmessageSearch->append("В телефонной книге нет записи с введёнными данными");
     else
+    {
         plinfmessageSearch->append("Телефонная запись удалена");
+        plinfmessageSort->clear();
+    }
 
     plesurnameSearch->clear();
     plenameSearch->clear();
@@ -292,7 +297,7 @@ bool PhoneBook::searchRecord(int i)
     else if(pvphonebook->at(i).pvphonerecord->at(1)==plenameSearch->text() && plenameSearch->text().size()!=0 && plesurnameSearch->text().size()==0)
         flag=true;
 
-    else if (pvphonebook->at(i).pvphonerecord->at(4)==plenumberSearch->text() && plenumberSearch->text().size()!=0)
+    else if (pvphonebook->at(i).pvphonerecord->at(3)==plenumberSearch->text() && plenumberSearch->text().size()!=0)
         flag=true;
 
     return flag;

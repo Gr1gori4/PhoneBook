@@ -62,9 +62,6 @@ private:
 
     Formconfirmation *form;
 
-signals:
-    void signal();
-
 private slots:
     void add_number();
     void search();

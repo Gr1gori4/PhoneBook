@@ -21,7 +21,7 @@ Formconfirmation::Formconfirmation(QWidget *parent) :
 
     setLayout(pvbxLayoutSearch);
 
-    connect(ppbconfirmation,SIGNAL(clicked()), this,SLOT(close()));
+    connect(ppbconfirmation,SIGNAL(clicked()), SLOT(close()));
 
     QFile styleF;
     styleF.setFileName(":/style/style.css");
@@ -33,11 +33,6 @@ Formconfirmation::Formconfirmation(QWidget *parent) :
 Formconfirmation::~Formconfirmation()
 {
     delete ui;
-}
-
-void Formconfirmation::slot()
-{
-
 }
 
 void Formconfirmation::close()
